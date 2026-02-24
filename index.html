@@ -8,58 +8,105 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 2rem;
-            background-color: #f4f4f9;
+            padding: 0;
+            background: linear-gradient(to bottom, #4A90E2, #145DA0);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        h1 {
+        header {
+            background-color: #0E3A63;
+            padding: 1rem;
+            width: 100%;
             text-align: center;
-            color: #333;
+            box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        #main-container {
+            flex: 1;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
         }
         #ideaInput {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.75rem;
             font-size: 1rem;
-            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
         }
-        #ideasList {
+        button {
+            cursor: pointer;
+            background-color: #FF6B6B;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+        ul {
             list-style: none;
             padding: 0;
+            margin-top: 1rem;
         }
         .idea-item {
-            background: #fff;
-            margin: 0.5rem 0;
+            background: #1F4E79;
+            margin-bottom: 1rem;
             padding: 1rem;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
         }
         .idea-item button {
-            background: #ff4d4d;
-            border: none;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
+            background-color: #E74C3C;
         }
-        .idea-item button:hover {
-            background: #ff1a1a;
+        footer {
+            background-color: #0E3A63;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0px -3px 5px rgba(0,0,0,0.2);
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Ideas Board</h1>
-    <input id="ideaInput" type="text" placeholder="Write a new idea...">
-    <ul id="ideasList"></ul>
+    <header>
+        <h1>💡 Ideas Board</h1>
+    </header>
+    <div id="main-container">
+        <input id="ideaInput" type="text" placeholder="Write a new idea..." />
+        <ul id="ideasList">
+            <li class="idea-item">AI News Aggregator <button onclick="removeIdea(this)">Delete</button></li>
+            <li class="idea-item">Daily Learning Tracker <button onclick="removeIdea(this)">Delete</button></li>
+            <li class="idea-item">Smart Expense Tracker <button onclick="removeIdea(this)">Delete</button></li>
+            <li class="idea-item">Habit Gamification App <button onclick="removeIdea(this)">Delete</button></li>
+            <li class="idea-item">AI-Powered Workout Planner <button onclick="removeIdea(this)">Delete</button></li>
+        </ul>
+    </div>
+    <footer>
+        <p>Made with ❤️ | <strong>Ideas Board</strong> © 2026</p>
+    </footer>
 
     <script>
-        const ideaInput = document.getElementById('ideaInput');
-        const ideasList = document.getElementById('ideasList');
+        const ideaInput = document.getElementById("ideaInput");
+        const ideasList = document.getElementById("ideasList");
 
         function addIdea(content) {
-            const newIdea = document.createElement('li');
-            newIdea.className = 'idea-item';
+            const newIdea = document.createElement("li");
+            newIdea.className = "idea-item";
             newIdea.innerHTML = `${content} <button onclick="removeIdea(this)">Delete</button>`;
             ideasList.appendChild(newIdea);
         }
@@ -69,10 +116,10 @@
             ideasList.removeChild(ideaToRemove);
         }
 
-        ideaInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && ideaInput.value.trim() !== '') {
+        ideaInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter" && ideaInput.value.trim() !== "") {
                 addIdea(ideaInput.value.trim());
-                ideaInput.value = '';
+                ideaInput.value = "";
             }
         });
     </script>
