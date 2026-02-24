@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideas Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #ideaInput {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        #ideasList {
+            list-style: none;
+            padding: 0;
+        }
+        .idea-item {
+            background: #fff;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .idea-item button {
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .idea-item button:hover {
+            background: #ff1a1a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ideas Board</h1>
+    <input id="ideaInput" type="text" placeholder="Write a new idea...">
+    <ul id="ideasList"></ul>
+
+    <script>
+        const ideaInput = document.getElementById('ideaInput');
+        const ideasList = document.getElementById('ideasList');
+
+        function addIdea(content) {
+            const newIdea = document.createElement('li');
+            newIdea.className = 'idea-item';
+            newIdea.innerHTML = `${content} <button onclick="removeIdea(this)">Delete</button>`;
+            ideasList.appendChild(newIdea);
+        }
+
+        function removeIdea(button) {
+            const ideaToRemove = button.parentElement;
+            ideasList.removeChild(ideaToRemove);
+        }
+
+        ideaInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && ideaInput.value.trim() !== '') {
+                addIdea(ideaInput.value.trim());
+                ideaInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
